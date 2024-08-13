@@ -1,9 +1,10 @@
 
 import { useState } from 'react';
 import './App.css';
+import DivingCard from './components/divingCard';
 
 function App() {
-  const [divingForecast, setDivingForecast] = useState("Diving data goes here...");
+  const [divingForecast, setDivingForecast] = useState(["Diving data goes here..."]);
 
   const handleDivingForecast = async () => {
     try {
@@ -26,7 +27,9 @@ function App() {
         <button onClick={handleDivingForecast}>Get diving forecast</button>
         {divingForecast && (
         <div>
-          <pre>{JSON.stringify(divingForecast, null, 2)}</pre>
+          {divingForecast.map((weatherData, index) =>(
+            <DivingCard weatherData={weatherData} key={index}/>
+          ))}
         </div>
       )}
       </header>
